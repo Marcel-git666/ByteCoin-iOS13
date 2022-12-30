@@ -115,6 +115,7 @@
                     </view>
                     <connections>
                         <outlet property="bitcoinLabel" destination="LAM-79-vXn" id="zxh-zt-Gpb"/>
+                        <outlet property="cryptoImg" destination="Qdw-gh-nWc" id="JCe-YH-aaG"/>
                         <outlet property="cryptoPicker" destination="f9M-7h-Hzd" id="3bh-Rb-hYU"/>
                         <outlet property="currencyLabel" destination="MAn-y0-nXv" id="pJl-QR-nuE"/>
                         <outlet property="currencyPicker" destination="ct2-jk-pgH" id="ccP-Nw-Cmf"/>

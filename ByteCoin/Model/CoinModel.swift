@@ -15,5 +15,12 @@ struct CoinModel {
     var rateString: String {
         String(format: "%.2f", rate)
     }
+    var cryptoImg: String {
+        switch cryptoName {
+        case "BTC": return "bitcoinsign.circle"
+        case "ETH": return "e.circle"
+        default: return "questionmark"
+        }
+    }
 
 }

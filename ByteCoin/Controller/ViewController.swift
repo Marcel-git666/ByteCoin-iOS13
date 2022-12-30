@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     var coinManager = CoinManager()
     
+    @IBOutlet weak var cryptoImg: UIImageView!
     @IBOutlet weak var bitcoinLabel: UILabel!
     @IBOutlet weak var currencyPicker: UIPickerView!
     
@@ -41,6 +42,8 @@ extension ViewController: CoinManagerDelegate {
         DispatchQueue.main.async {
             self.currencyLabel.text = coin.currencyName
             self.rateLabel.text = coin.rateString
+            self.cryptoImg.image = UIImage(systemName: coin.cryptoImg)
+            
         }
         
     }
