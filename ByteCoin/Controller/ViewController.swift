@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var bitcoinLabel: UILabel!
     @IBOutlet weak var currencyPicker: UIPickerView!
     
+    @IBOutlet weak var cryptoPicker: UIPickerView!
     @IBOutlet weak var currencyLabel: UILabel!
     @IBOutlet weak var rateLabel: UILabel!
     
@@ -22,6 +23,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         currencyPicker.dataSource = self
         currencyPicker.delegate = self
+        cryptoPicker.dataSource = self
+        cryptoPicker.delegate = self
+        
         coinManager.delegate = self
         
         // Do any additional setup after loading the view.
@@ -54,11 +58,21 @@ extension ViewController: UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return coinManager.currencyArray.count
+        if pickerView.tag == 1 {
+                return coinManager.currencyArray.count
+            } else {
+                return coinManager.cryptoArray.count
+            }
+        
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        coinManager.currencyArray[row]
+        if pickerView.tag == 1 {
+                return coinManager.currencyArray[row]
+            } else {
+                return coinManager.cryptoArray[row]
+            }
+        
     }
     
 }
@@ -67,8 +81,17 @@ extension ViewController: UIPickerViewDataSource {
 
 extension ViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let selectedCurrency = coinManager.currencyArray[row]
-        coinManager.getCoinPrice(for: selectedCurrency)
-        print(coinManager.currencyArray[row])
+        var selectedCurrency = coinManager.currencyArray[0]
+        var selectedCrypto = coinManager.cryptoArray[0]
+        
+        if pickerView.tag == 1 {
+            selectedCurrency = coinManager.currencyArray[row]
+            
+            print(coinManager.currencyArray[row])
+        } else {
+            selectedCrypto = coinManager.cryptoArray[row]
+            print(coinManager.cryptoArray[row])
+        }
+        coinManager.getCoinPrice(for: selectedCrypto, currency: selectedCurrency)
     }
 }
